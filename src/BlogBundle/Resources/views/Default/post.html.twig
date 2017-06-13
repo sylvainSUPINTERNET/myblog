@@ -1,0 +1,30 @@
+{% extends 'BlogBundle::layout.html.twig' %}
+
+{% block content %}
+    {#  {{ lists }} #}
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <table class="table">
+                    <thead>
+
+                    <tr>
+                        <th>Titre</th>
+                        <th>Descrition</th>
+                        <th>Contenu</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for post in posts %}
+                        <tr>
+                            <td>{{ post.title }}</td>
+                            <td>{{ post.description }}</td>
+                            <td>{{ post.content }}</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}

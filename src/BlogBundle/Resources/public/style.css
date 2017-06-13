@@ -1,0 +1,12 @@
+body {
+    min-height: 75rem;
+    padding-top: 4.5rem;
+}
+
+#navbarCollapse {
+    justify-content: space-between;
+}
+
+#navbarCollapse ul.right {
+    margin-right: 0 !important;
+}
