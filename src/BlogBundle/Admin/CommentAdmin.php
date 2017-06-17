@@ -7,33 +7,32 @@ use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 
-class PostAdmin extends AbstractAdmin
+class CommentAdmin extends AbstractAdmin
 {
     protected function configureFormFields(FormMapper $formMapper)
     {
-        $formMapper->add('title');
-        $formMapper->add('description');
+
+        $formMapper->add('commentator');
         $formMapper->add('content');
-        $formMapper->add('categories');
+        $formMapper->add('post');
 
 
     }
 
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
-        $datagridMapper->add('title');
-        $datagridMapper->add('created');
-        $datagridMapper->add('description');
-        $datagridMapper->add('categories');
 
+        $datagridMapper->add('post');
+        $datagridMapper->add('commentator');
+        $datagridMapper->add('created');
 
     }
 
     protected function configureListFields(ListMapper $listMapper)
     {
-        $listMapper->addIdentifier('title');
+
+        $listMapper->addIdentifier('commentator');
+        $listMapper->add('post');
         $listMapper->add('created');
-        $listMapper->add('description');
-        $listMapper->add('categories');
     }
 }

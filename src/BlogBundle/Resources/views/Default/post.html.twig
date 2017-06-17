@@ -12,6 +12,9 @@
                         <th>Titre</th>
                         <th>Descrition</th>
                         <th>Contenu</th>
+                        <th>Date</th>
+                        <th>Catégories</th>
+                        <th>Commentaires</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -20,6 +23,23 @@
                             <td>{{ post.title }}</td>
                             <td>{{ post.description }}</td>
                             <td>{{ post.content }}</td>
+                            <td>{{ post.created|date("m/d/Y") }}</td>
+                            <td>
+                                {% for category in post.categories %}
+                                    <ul>
+                                        <li>{{ category.name }}</li>
+                                    </ul>
+                                {% endfor %}
+                            </td>
+                            <td>
+                                {% for comment in post.comment %}
+                                    {% if post.comment|length != 0 %}
+                                        <span class="badge badge-primary">{{ post.comment|length }}</span>
+                                    {% else %}
+                                        <span class="badge badge-primary">0</span>
+                                    {% endif %}
+                                {% endfor %}
+                            </td>
                         </tr>
                     {% endfor %}
                     </tbody>

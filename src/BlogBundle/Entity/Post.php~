@@ -173,10 +173,6 @@ class Post
 
     public function __toString()
     {
-        if ($this->getTitle() == "") {
-            $this->setTitle("Aucun titre !");
-        }
-
         return $this->title;
     }
 
@@ -223,39 +219,5 @@ class Post
     public function getCategories()
     {
         return $this->categories;
-    }
-
-    /**
-     * Add comment
-     *
-     * @param \BlogBundle\Entity\Comment $comment
-     *
-     * @return Post
-     */
-    public function addComment(\BlogBundle\Entity\Comment $comment)
-    {
-        $this->comment[] = $comment;
-
-        return $this;
-    }
-
-    /**
-     * Remove comment
-     *
-     * @param \BlogBundle\Entity\Comment $comment
-     */
-    public function removeComment(\BlogBundle\Entity\Comment $comment)
-    {
-        $this->comment->removeElement($comment);
-    }
-
-    /**
-     * Get comment
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getComment()
-    {
-        return $this->comment;
     }
 }

@@ -4,3 +4,17 @@ services:
         arguments: [~, BlogBundle\Entity\Post, ~]
         tags:
             - { name: sonata.admin, manager_type: orm, label: Post, group: "Postes" }
+    admin.category:
+        class: BlogBundle\Admin\CategoryAdmin
+        arguments: [~, BlogBundle\Entity\Category, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: Category, group: "Categories" }
+    admin.comment:
+        class: BlogBundle\Admin\CommentAdmin
+        arguments: [~, BlogBundle\Entity\Comment, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: Comment, group: "Postes" }
+    twigdate.listener.request:
+        class: BlogBundle\Services\CurrentUserManager
+        arguments:
+            - "@=service('security.token_storage').getToken().getUser()"
