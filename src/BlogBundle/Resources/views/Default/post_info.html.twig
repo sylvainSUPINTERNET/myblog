@@ -1,0 +1,33 @@
+{% extends 'BlogBundle::layout.html.twig' %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                {% if posts is defined and posts != "" %}
+                    <div class="jumbotron">
+                        <h1 class="display-3">{{ posts.title }}</h1>
+                        <p class="lead">{{ posts.description }}</p>
+                        <hr class="my-4">
+                        <p>{{ posts.content }}</p>
+                        <p class="lead">
+                            <a class="btn btn-success btn-lg" href="#" role="button">Add comment</a>
+                        </p>
+                    </div>
+                    <h3>Comments</h3>
+                    {% for comment in posts.comment %}
+                        <ul style="list-style-type: none">
+                            <li>{{ comment.commentator }}</li>
+                            <li>{{ comment.content }}</li>
+                            <li><code>{{ comment.created|date("m/d/Y") }}</code></li>
+                        </ul>
+                    {% endfor %}
+                {% else %}
+                    <div class="alert alert-danger text-center" role="alert">
+                        <strong>404</strong> Article not found !
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

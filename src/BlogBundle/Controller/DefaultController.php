@@ -12,7 +12,6 @@ use BlogBundle\Entity\Category;
 use Symfony\Component\HttpFoundation\Request;
 
 
-
 class DefaultController extends Controller
 {
     /**
@@ -21,11 +20,11 @@ class DefaultController extends Controller
     public function indexAction(Request $request)
     {
 
-        $em    = $this->get('doctrine.orm.entity_manager');
-        $dql   = "SELECT a FROM BlogBundle:Post a";
+        $em = $this->get('doctrine.orm.entity_manager');
+        $dql = "SELECT a FROM BlogBundle:Post a";
         $query = $em->createQuery($dql);
 
-        $paginator  = $this->get('knp_paginator');
+        $paginator = $this->get('knp_paginator');
         $posts = $paginator->paginate(
             $query, /* query NOT result */
             $request->query->getInt('page', 1)/*page number*/,
@@ -72,28 +71,79 @@ class DefaultController extends Controller
         );
     }
 
+    /**
+     * @Route("/post/{id}", name="post_info")
+     */
+    public function postInfoAction(Request $request, $id)
+    {
+
+        $em = $this->get('doctrine')->getManager();
+        $post = $em->getRepository('BlogBundle:Post')
+            ->find($id);
+
+        return $this->render('BlogBundle:Default:post_info.html.twig', array(
+                'posts' => $post,
+            )
+        );
+    }
+
+
+
 
     /**
      * @Route("/{slug}", name="slug_path")
      */
     public function slutAction(Request $request, $slug)
     {
-
-
-
-
         $em = $this->get('doctrine')->getManager();
         $categories = $em->getRepository('BlogBundle:Category')
-            ->findAll();
+            ->findBy(array('slug' => $slug));
 
         $em = $this->get('doctrine')->getManager();
         $posts = $em->getRepository('BlogBundle:Post')
-            ->findAll();
-            var_dump($slug);
-        return $this->render('BlogBundle:Default:categories.html.twig', array(
-                'categories' => $categories,
-            )
-        );
+            ->findBy(array('slug' => $slug));
+
+        if (count($categories) == 0 && count($posts) > 0) {
+            //return post
+            return $this->render('BlogBundle:Default:slug.html.twig', array(
+                    'posts' => $posts,
+                )
+            );
+        } else if (count($categories) > 0 && count($posts) == 0) {
+            //return categories
+
+            $em = $this->get('doctrine.orm.entity_manager');
+            $dql = "SELECT a FROM BlogBundle:Post a";
+            $query = $em->createQuery($dql);
+
+            $paginator = $this->get('knp_paginator');
+            $allPost = $paginator->paginate(
+                $query, /* query NOT result */
+                $request->query->getInt('page', 1)/*page number*/,
+                5/*limit per page*/
+            );
+
+
+            return $this->render('BlogBundle:Default:slug.html.twig', array(
+                    'categories' => $categories,
+                    'allPosts' => $allPost,
+                )
+            );
+        } else if (count($categories) == 0 && count($posts) == 0) {
+            // return error
+            $errorMsg = "Aucun résultats trouvé !";
+            return $this->render('BlogBundle:Default:slug.html.twig', array(
+                    'error' => $errorMsg,
+                )
+            );
+        } else {
+            //return post par défaut (post > categorie)
+            return $this->render('BlogBundle:Default:slug.html.twig', array(
+                    'posts' => $posts,
+                )
+            );
+        }
+
     }
 
 
@@ -126,9 +176,6 @@ class DefaultController extends Controller
     */
 
 
-
-
-
-
+    // MENU SECU COMMENTAIRE FOR USER sur toutes les routes slug etc + AJOUT LIEN A CHAQUE FOIS QU IL A LARTICLE SUR LA ROUTE /post/id pour voir les infos
 
 }
