@@ -18,3 +18,9 @@ services:
         class: BlogBundle\Services\CurrentUserManager
         arguments:
             - "@=service('security.token_storage').getToken().getUser()"
+    #event_listener.comment:
+        #class: BlogBundle\EventListener\CommentListener
+        #arguments: ["@security.token_storage"]
+        #tags:
+           # - { name: doctrine.event_listener, event: prePost }
+

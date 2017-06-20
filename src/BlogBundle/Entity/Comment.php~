@@ -46,6 +46,7 @@ class Comment
     /**
      * Many Users have One Address.
      * @ORM\ManyToOne(targetEntity="Post", inversedBy="comment")
+     * @ORM\ManyToOne(targetEntity="Post", inversedBy="comment")
      * @ORM\JoinColumn(name="post_id", referencedColumnName="id", nullable=false)
      */
     private $post;
@@ -152,6 +153,16 @@ class Comment
         $this->commentator = $commentator;
 
         return $this;
+    }
+
+    public function __toString()
+    {
+        if($this->getCommentator() != ""){
+            return $this->getCommentator()->getUsername();
+
+        }else{
+            return "";
+        }
     }
 
     /**

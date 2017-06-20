@@ -35,5 +35,6 @@ class PostAdmin extends AbstractAdmin
         $listMapper->add('created');
         $listMapper->add('description');
         $listMapper->add('categories');
+        $listMapper->add('comment');
     }
 }

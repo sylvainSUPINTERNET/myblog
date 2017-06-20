@@ -2,10 +2,15 @@
 
 namespace BlogBundle\Admin;
 
+use BlogBundle\EventListener\CommentListener;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Form\FormMapper;
+use FOS\UserBundle\Model\UserManagerInterface;
+
+
+
 
 class CommentAdmin extends AbstractAdmin
 {
@@ -18,6 +23,26 @@ class CommentAdmin extends AbstractAdmin
 
 
     }
+
+
+
+
+    //postPersist
+        //$object = entityCOmment
+    //public function prePersist($object) {
+
+        /*
+         * Get user id for setCommentator
+        $container = $this->getConfigurationPool()->getContainer();
+        $entityManager = $container->get('doctrine.orm.entity_manager');
+
+        $object->setCommentator();
+        $entityManager->flush();
+        */
+    //}
+
+
+
 
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
@@ -35,4 +60,6 @@ class CommentAdmin extends AbstractAdmin
         $listMapper->add('post');
         $listMapper->add('created');
     }
+
+
 }

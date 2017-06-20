@@ -155,6 +155,16 @@ class Comment
         return $this;
     }
 
+    public function __toString()
+    {
+        if($this->getCommentator() != ""){
+            return $this->getCommentator()->getUsername();
+
+        }else{
+            return "";
+        }
+    }
+
     /**
      * Get commentator
      *
