@@ -55,7 +55,62 @@ class DefaultController extends Controller
         );
     }
 
+    /**
+     * @Route("/categories/show", name="categories_show")
+     */
+    public function categoriesAction(Request $request)
+    {
 
+        $em = $this->get('doctrine')->getManager();
+        $categories = $em->getRepository('BlogBundle:Category')
+            ->findAll();
+
+
+        return $this->render('BlogBundle:Default:categories.html.twig', array(
+                'categories' => $categories,
+            )
+        );
+    }
+
+
+    /**
+     * @Route("/{slug}", name="slug_path")
+     */
+    public function slutAction(Request $request, $slug)
+    {
+
+
+
+
+        $em = $this->get('doctrine')->getManager();
+        $categories = $em->getRepository('BlogBundle:Category')
+            ->findAll();
+
+        $em = $this->get('doctrine')->getManager();
+        $posts = $em->getRepository('BlogBundle:Post')
+            ->findAll();
+            var_dump($slug);
+        return $this->render('BlogBundle:Default:categories.html.twig', array(
+                'categories' => $categories,
+            )
+        );
+    }
+
+
+    //LA ROUTE /{slug} bien la mettre a la fin sinon les autres routes ne match pas
+    //article et catégorie sont sur /slug donc verifier a chaque fois si en base c'est une catégorie OU un article
+    // refaire les donnée en base car maintenant elle devront integrer un slug !
+    // ajouter la slug sur la création d'un post
+    // AU MOMENT DU CALL DU SLUG si on affiche la catégorie c'est uniquement LES 5 premiers avec pagination
+    // pour le slug faire une condition return soit categorie soit une catégorie (en principe)
+    // CREATION d'un post susr sonata get Current user aussi
+    //faire la pagination sur l'url catégorie puis afficher les 5 premiers articles de la catégories
+    // crer des roles selon les consignes
+    // securiser TOUTES les routes
+    // MENU -> creer une reubrique pour chaque categorie
+
+
+    /*
     public function getCategoriesAction()
     {
 
@@ -68,6 +123,7 @@ class DefaultController extends Controller
             )
         );
     }
+    */
 
 
 

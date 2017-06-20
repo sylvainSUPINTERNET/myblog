@@ -25,16 +25,16 @@
             aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
-    <a class="navbar-brand" href="{{ path('home') }}">Blog Sylvain le boss</a>
+    <a class="navbar-brand" href="{{ path('home') }}">Yet Another Blog</a>
     <div class="collapse navbar-collapse" id="navbarCollapse">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
                 <a class="nav-link" href="{{ path('home') }}">Home</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{{ path('post_list') }}">Postes</a>
-            </li>
             <!-- for avec les cat -->
+            <li class="nav-item">
+                <a class="nav-link" href="{{ path('categories_show') }}">Categories</a>
+            </li>
         </ul>
     </div>
 </nav>
