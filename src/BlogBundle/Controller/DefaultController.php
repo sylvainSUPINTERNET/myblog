@@ -9,7 +9,11 @@ use Symfony\Component\HttpFoundation\Response;
 use Doctrine\Common\Persistence\ManagerRegistry;
 use BlogBundle\Entity\Post;
 use BlogBundle\Entity\Category;
+use BlogBundle\Entity\Comment;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 
 class DefaultController extends Controller
@@ -77,17 +81,145 @@ class DefaultController extends Controller
     public function postInfoAction(Request $request, $id)
     {
 
+        $currentUser = $this->container->get('security.token_storage')->getToken()->getUser();
+
         $em = $this->get('doctrine')->getManager();
         $post = $em->getRepository('BlogBundle:Post')
             ->find($id);
 
         return $this->render('BlogBundle:Default:post_info.html.twig', array(
                 'posts' => $post,
+                'userId' => $currentUser->getId(),
+            )
+        );
+    }
+
+    /**
+     * @Route("/post/{id}/add/comment", name="post_comment")
+     */
+    public function postAddCommentAction(Request $request, $id)
+    {
+
+        $em = $this->get('doctrine')->getManager();
+        $post = $em->getRepository('BlogBundle:Post')
+            ->find($id);
+
+
+
+        $currentUser = $this->container->get('security.token_storage')->getToken()->getUser();
+        $comment = new Comment();
+        $comment->setCommentator($currentUser);
+        $comment->setPost($post);
+        //date mis auto
+
+        $form = $this->createFormBuilder($comment)
+            ->add('content', TextType::class)
+            ->add('save', SubmitType::class, array('label' => 'Add comment'))
+            ->getForm();
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            // $form->getData() holds the submitted values
+            // but, the original `$task` variable has also been updated
+            $comment = $form->getData();
+
+            $em = $this->get('doctrine')->getManager();
+
+            $em->persist($comment);
+            $em->flush();
+
+            return $this->redirectToRoute('post_info', array(
+                'id' => $id
+            ));
+        }
+
+        return $this->render('BlogBundle:Default:post_new_comment.html.twig', array(
+                'form' => $form->createView(),
             )
         );
     }
 
 
+    /**
+     * @Route("/post/{id}/edit/comment/{id_comment}", name="post_comment_edit")
+     */
+    public function postEditCommentAction(Request $request, $id, $id_comment)
+    {
+
+        $em = $this->get('doctrine')->getManager();
+        $post = $em->getRepository('BlogBundle:Post')
+            ->find($id);
+
+        $em = $this->get('doctrine')->getManager();
+        $commentToEdit = $em->getRepository('BlogBundle:Comment')
+            ->find($id_comment);
+
+
+        $currentUser = $this->container->get('security.token_storage')->getToken()->getUser();
+        $comment = new Comment();
+        $comment->setCommentator($currentUser);
+        $comment->setPost($post);
+        //date mis auto
+
+        $form = $this->createFormBuilder($comment)
+            ->add('content', TextType::class, array(
+                'attr' => array(
+        'placeholder' => $commentToEdit->getContent(),
+    )))
+            ->add('save', SubmitType::class, array('label' => 'Change comment'))
+            ->getForm();
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            // $form->getData() holds the submitted values
+            // but, the original `$task` variable has also been updated
+            $comment = $form->getData();
+
+            $em = $this->get('doctrine')->getManager();
+            $commentToEdit->setContent($comment->getContent());
+            $em->flush();
+
+            return $this->redirectToRoute('post_info', array(
+                'id' => $id
+            ));
+        }
+
+        return $this->render('BlogBundle:Default:post_edit_comment.html.twig', array(
+                'form' => $form->createView(),
+                'userId' => $currentUser->getId(),
+            )
+        );
+    }
+
+    /**
+     * @Route("/post/{id}/delete/comment/{id_comment}", name="post_comment_delete")
+     */
+    public function postDeleteCommentActio(Request $request, $id, $id_comment)
+    {
+
+        $em = $this->get('doctrine')->getManager();
+        $post = $em->getRepository('BlogBundle:Post')
+            ->find($id);
+
+        $commentToDelete = $em->getRepository('BlogBundle:Comment')
+            ->find($id_comment);
+
+        $currentUser = $this->container->get('security.token_storage')->getToken()->getUser();
+
+
+        $em->remove($commentToDelete);
+        $em->flush();
+
+
+        return $this->render('BlogBundle:Default:post_info.html.twig', array(
+                'posts' => $post,
+                'userId' => $currentUser->getId(),
+            )
+        );
+
+    }
 
 
     /**
@@ -177,5 +309,11 @@ class DefaultController extends Controller
 
 
     // MENU SECU COMMENTAIRE FOR USER sur toutes les routes slug etc + AJOUT LIEN A CHAQUE FOIS QU IL A LARTICLE SUR LA ROUTE /post/id pour voir les infos
+    //Connexion / login etc dans le mmenu + champs de recherche pour les slug
+
+
+    //TO DO : ACL ROLE / securisation route + dynamique twig en fonction des granted
+    //MENU => categorie en form de lien + champ recherche pour le slug
+    // ATTRIBUTION A UN USER LORS DE LA CREATION DUN NOUVEAU POST (le post doit avoir un author et le faire apparaitre sur les pages index et post_info)
 
 }

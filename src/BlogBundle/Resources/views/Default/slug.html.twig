@@ -12,7 +12,7 @@
                                 <hr class="my-4">
                                 <p>{{ post.content }}</p>
                                 <p class="lead">
-                                    <a class="btn btn-success btn-lg" href="#" role="button">Add comment</a>
+                                    <a class="btn btn-success btn-lg" href="{{ path('post_comment', {'id' : post.id}) }}" role="button">Add comment</a>
                                 </p>
                             </div>
                             <h3>Comments</h3>

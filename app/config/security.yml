@@ -26,17 +26,17 @@ security:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
         admin:
-            pattern:            /admin(.*)
+            pattern:            /yab(.*)
             context:            user
             form_login:
                 provider:       fos_userbundle
-                login_path:     /admin/login
+                login_path:     /yab/login
                 use_forward:    false
-                check_path:     /admin/login_check
+                check_path:     /yab/login_check
                 failure_path:   null
             logout:
-                path:           /admin/logout
-                target:         /admin/login
+                path:           /yab/logout
+                target:         /yab/login
             anonymous:          true
         main:
             pattern:             .*
@@ -52,14 +52,14 @@ security:
 
     access_control:
         # Admin login page needs to be accessed without credential
-        - { path: ^/admin/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/admin/logout$, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/admin/login_check$, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/admin/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/yab/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/yab/logout$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/yab/login_check$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/yab/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
 
         # Secured part of the site
         # This config requires being logged for the whole site and having the admin role for the admin part.
         # Change these rules to adapt them to your needs
-        - { path: ^/admin/, role: [ROLE_ADMIN, ROLE_SONATA_ADMIN] }
-        - { path: ^/admin/, role: [ROLE_ADMIN, ROLE_SONATA_ADMIN] }
+        - { path: ^/yab/, role: [ROLE_ADMIN, ROLE_SONATA_ADMIN] }
+        - { path: ^/yab/, role: [ROLE_ADMIN, ROLE_SONATA_ADMIN] }
         - { path: ^/.*, role: IS_AUTHENTICATED_ANONYMOUSLY }

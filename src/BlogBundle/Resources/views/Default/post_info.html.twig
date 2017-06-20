@@ -11,16 +11,35 @@
                         <hr class="my-4">
                         <p>{{ posts.content }}</p>
                         <p class="lead">
-                            <a class="btn btn-success btn-lg" href="#" role="button">Add comment</a>
+                            <a class="btn btn-success btn-lg" href="{{ path('post_comment', {'id' : posts.id}) }}"
+                               role="button">Add
+                                comment</a>
                         </p>
                     </div>
                     <h3>Comments</h3>
                     {% for comment in posts.comment %}
+                        {% if comment.commentator.id == userId %}
+                            <a href="{{ path('post_comment_delete', {'id' :  posts.id , 'id_comment': comment.id }) }}">
+                                <button type="button" class="close" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </a>
+
+                            <a href="{{ path('post_comment_edit', {'id' :  posts.id , 'id_comment': comment.id }) }}">
+                                <button type="button" class="btn btn-default" aria-label="Left Align">
+                                    <span class="glyphicon glyphicon-pencil" aria-hidden="true">Edit</span>
+                                </button>
+                            </a>
+
+                        {% else %}
+                            <!-- cant delete or edit ! -->
+                        {% endif %}
                         <ul style="list-style-type: none">
                             <li>{{ comment.commentator }}</li>
                             <li>{{ comment.content }}</li>
                             <li><code>{{ comment.created|date("m/d/Y") }}</code></li>
                         </ul>
+                        <hr>
                     {% endfor %}
                 {% else %}
                     <div class="alert alert-danger text-center" role="alert">

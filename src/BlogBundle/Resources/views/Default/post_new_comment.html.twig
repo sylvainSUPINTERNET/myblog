@@ -1,0 +1,12 @@
+{% extends 'BlogBundle::layout.html.twig' %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <h3>Commenter</h3>
+                {{ form(form, {'attr': {'novalidate': 'novalidate'}}) }}
+            </div>
+        </div>
+    </div>
+{% endblock %}
