@@ -1,5 +1,28 @@
 {% extends 'BlogBundle::layout.html.twig' %}
 
+{% block nav %}
+    <nav class="navbar navbar-toggleable-md navbar-inverse fixed-top bg-inverse">
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+                data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false"
+                aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <a class="navbar-brand" href="{{ path('home') }}">Yet Another Blog</a>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="{{ path('home') }}">Home</a>
+                </li>
+                {% for rubrique in rubriques %}
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{{ path('category_info', {'name_cat' :  rubrique.name } ) }}">{{ rubrique.name|capitalize }}</a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </nav>
+{% endblock %}
+
 {% block content %}
     <div class="container">
         <div class="row">
@@ -17,7 +40,7 @@
                             <p><strong><i>Thèmes : </i></strong></p>
                             {% for category in post.categories %}
                                 <ul>
-                                    <li>{{ category.name }}</li>
+                                    <li><a href="{{ path('category_info' , {'name_cat': category.name}) }}">{{ category.name }}</a></li>
                                 </ul>
                             {% endfor %}
                         </li>
