@@ -30,12 +30,14 @@ class User extends BaseUser
      */
     protected $id;
 
-
+    /*
     /**
      * One User has Many Comments.
      * @ORM\OneToMany(targetEntity="Comment", mappedBy="commentator")
      */
+    /*
     private $comments;
+    */
 
     /**
      * Get id

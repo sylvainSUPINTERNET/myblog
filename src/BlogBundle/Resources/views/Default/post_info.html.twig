@@ -14,13 +14,36 @@
                 </li>
                 {% for rubrique in rubriques %}
                     <li class="nav-item active">
-                        <a class="nav-link" href="{{ path('category_info', {'name_cat' :  rubrique.name } ) }}">{{ rubrique.name|capitalize }}</a>
+                        <a class="nav-link"
+                           href="{{ path('category_info', {'name_cat' :  rubrique.name } ) }}">{{ rubrique.name|capitalize }}</a>
                     </li>
                 {% endfor %}
             </ul>
+            <ul class="nav navbar-nav navbar-right">
+                {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_SUPER_ADMIN') or is_granted('ROLE_USER') %}
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{{ path('sonata_user_admin_security_logout') }}">Logout</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/yab/dashboard">Dashboard</a>
+                    </li>
+                {% else %}
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{{ path('sonata_user_admin_security_login') }}">Login</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{{ path('fos_user_registration_register') }}">Sign up</a>
+                    </li>
+                {% endif %}
+            </ul>
+
+
         </div>
     </nav>
 {% endblock %}
+
+
+
 {% block content %}
     <div class="container">
         <div class="row">
@@ -32,10 +55,18 @@
                         <hr class="my-4">
                         <p>{{ posts.content }}</p>
                         <p class="lead">
-                            <a class="btn btn-success btn-lg" href="{{ path('post_comment', {'id' : posts.id}) }}"
-                               role="button">Add
-                                comment</a>
+                            {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_SUPER_ADMIN') or is_granted('ROLE_USER') %}
+                                <a class="btn btn-success btn-lg" href="{{ path('post_comment', {'id' : posts.id}) }}"
+                                   role="button">Add
+                                    comment</a>
+                            {% else %}
+                                <a class="btn btn-success btn-lg disabled" href="#"
+                                   role="button">Add
+                                    comment</a>
+
+                            {% endif %}
                         </p>
+
                     </div>
                     <h3>Comments</h3>
                     {% for comment in posts.comment %}

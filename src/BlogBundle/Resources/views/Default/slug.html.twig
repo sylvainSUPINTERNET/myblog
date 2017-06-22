@@ -21,9 +21,34 @@
                     </li>
                 {% endfor %}
             </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_SUPER_ADMIN') or is_granted('ROLE_USER') %}
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{{ path('sonata_user_admin_security_logout') }}">Logout</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/yab/dashboard">Dashboard</a>
+                    </li>
+                {% else %}
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{{ path('sonata_user_admin_security_login') }}">Login</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{{ path('fos_user_registration_register') }}">Sign up</a>
+                    </li>
+                {% endif %}
+            </ul>
         </div>
     </nav>
+
+
+
 {% endblock %}
+
+
+
+
 
 
 {% block content %}
@@ -32,23 +57,29 @@
             <div class="col">
                 {% if posts is defined and posts != "" %}
                     {% for post in posts %}
-                            <div class="jumbotron">
-                                <h1 class="display-3">{{ post.title }}</h1>
-                                <p class="lead">{{ post.description }}</p>
-                                <hr class="my-4">
-                                <p>{{ post.content }}</p>
-                                <p class="lead">
-                                    <a class="btn btn-success btn-lg" href="{{ path('post_comment', {'id' : post.id}) }}" role="button">Add comment</a>
-                                </p>
-                            </div>
-                            <h3>Comments</h3>
-                            {% for comment in post.comment %}
-                                <ul style="list-style-type: none">
-                                    <li>{{ comment.commentator }}</li>
-                                    <li>{{ comment.content }}</li>
-                                    <li><code>{{ comment.created|date("m/d/Y") }}</code></li>
-                                </ul>
-                            {% endfor %}
+                        <div class="jumbotron">
+                            <h1 class="display-3">{{ post.title }}</h1>
+                            <p class="lead">{{ post.description }}</p>
+                            <hr class="my-4">
+                            <p>{{ post.content }}</p>
+                            <p class="lead">
+                                {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_SUPER_ADMIN') or is_granted('ROLE_USER') %}
+                                    <a class="btn btn-success btn-lg"
+                                       href="{{ path('post_comment', {'id' : post.id}) }}" role="button">Add comment</a>
+                                {% else %}
+                                    <a class="btn btn-success btn-lg disabled"
+                                       href="#" role="button">Add comment</a>
+                                {% endif %}
+                            </p>
+                        </div>
+                        <h3>Comments</h3>
+                        {% for comment in post.comment %}
+                            <ul style="list-style-type: none">
+                                <li>{{ comment.commentator }}</li>
+                                <li>{{ comment.content }}</li>
+                                <li><code>{{ comment.created|date("m/d/Y") }}</code></li>
+                            </ul>
+                        {% endfor %}
                     {% endfor %}
                 {% endif %}
                 {% if categories is defined and categories != "" %}
@@ -57,7 +88,7 @@
                     {% endfor %}
                     {% for post in allPosts %}
                         <ul style="list-style-type: none;">
-                            <li><h3>{{ post.title }}</h3></li>
+                            <h3><a href="{{ path('post_info', {'id' : post.id }) }}">{{ post.title }}</a></h3>
                             <li><code>{{ post.created|date("m/d/Y") }}</code></li>
                             <li><i><strong>{{ post.description }}</strong></i></li>
                             <li><i>{{ post.content| truncate(200, false, ' ...') }}</i></li>
@@ -66,7 +97,7 @@
                                 <p><strong><i>Thèmes : </i></strong></p>
                                 {% for category in post.categories %}
                                     <ul>
-                                        <li>{{ category.name }}</li>
+                                        <a href="{{ path('category_info' , {'name_cat': category.name}) }}">{{ category.name }}</a>
                                     </ul>
                                 {% endfor %}
                             </li>
