@@ -8,6 +8,47 @@ security:
         connection: default
 
     role_hierarchy:
+
+        #ROLE_NAME (apparait dans le group de sonata menu) pour l'attriburtion
+        # check us services.yml =>  admin.post par exemple == ROLE_ADMIN_ POST/CREATE/DELETE/UPDATE
+        # https://stackoverflow.com/questions/14154505/how-to-use-roles-in-sonataadminbundle
+
+        ROLE_UTILISATEUR:
+        #DO NOTHING ONLY COMMENT ON POST  + SLUG POST IF CONNECTED (verif into twig)
+
+         #Access to dashboard
+            - ROLE_SONATA_STUFF # have no effect on the UI
+            - ROLE_SONATA_ADMIN # with this role you have a nice navbar with search box
+        #Post
+            - ROLE_ADMIN_POST_GUEST
+
+        #Comment
+            - ROLE_ADMIN_COMMENT_GUEST
+
+        #Category
+            - ROLE_ADMIN_CATEGORY_GUEST
+
+        ROLE_EDITOR:
+          #Access to dashboard
+            - ROLE_SONATA_STUFF # have no effect on the UI
+            - ROLE_SONATA_ADMIN # with this role you have a nice navbar with search box
+        #Post
+            - ROLE_ADMIN_POST_STAFF
+            - ROLE_ADMIN_POST_EDITOR
+
+        #Comment
+            - ROLE_ADMIN_COMMENT_STAFF
+            - ROLE_ADMIN_COMMENT_EDITOR
+
+        #Category
+            - ROLE_ADMIN_CATEGORY_STAFF
+            - ROLE_ADMIN_CATEGORY_EDITOR
+
+
+
+
+
+
         ROLE_ADMIN:       [ROLE_USER, ROLE_SONATA_ADMIN]
         ROLE_SUPER_ADMIN: [ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
         SONATA:
@@ -65,3 +106,6 @@ security:
         - { path: ^/yab/, role: [ROLE_ADMIN, ROLE_SONATA_ADMIN] }
         - { path: ^/yab/, role: [ROLE_ADMIN, ROLE_SONATA_ADMIN] }
         - { path: ^/.*, role: IS_AUTHENTICATED_ANONYMOUSLY }
+
+    acl:
+        connection: default

@@ -101,6 +101,12 @@ sonata_user:
     manager_type: orm # can be orm or mongodb
 
 
+sonata_admin:
+    security:
+         handler: sonata.admin.security.handler.acl
+
+
+
 
 knp_paginator:
     page_range: 5                      # default page range used in pagination control
