@@ -3,9 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="b4279ee7-1af6-4b70-ab64-2a7b4bb72897" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/config/config.yml" afterPath="$PROJECT_DIR$/app/config/config.yml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/config/security.yml" afterPath="$PROJECT_DIR$/app/config/security.yml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/BlogBundle/Resources/config/services.yml" afterPath="$PROJECT_DIR$/src/BlogBundle/Resources/config/services.yml" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -19,128 +16,7 @@
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.5">
-      <split-first>
-        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="security.yml" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/app/config/security.yml">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="425">
-                  <caret line="25" column="38" lean-forward="true" selection-start-line="25" selection-start-column="38" selection-end-line="25" selection-end-column="38" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="config.yml" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/app/config/config.yml">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="412">
-                  <caret line="101" column="0" lean-forward="false" selection-start-line="101" selection-start-column="0" selection-end-line="105" selection-end-column="51" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="DefaultController.php" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/BlogBundle/Controller/DefaultController.php">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="314">
-                  <caret line="42" column="0" lean-forward="false" selection-start-line="42" selection-start-column="0" selection-end-line="42" selection-end-column="0" />
-                  <folding>
-                    <marker date="1498141873684" expanded="true" signature="833:864" ph="SELECT a FRO... BlogBundle" />
-                    <marker date="1498141873684" expanded="true" signature="2119:2289" ph="SELECT p.id,... BlogBundle" />
-                    <marker date="1498141873684" expanded="true" signature="2119:2301" ph="SELECT p.id,... BlogBundle" />
-                    <marker date="1498141873684" expanded="true" signature="2119:2303" ph="SELECT p.id,... BlogBundle" />
-                    <marker date="1498141873684" expanded="true" signature="2325:2445" ph="SELECT c.id,... BlogBundle" />
-                    <marker date="1498141873684" expanded="true" signature="2325:2446" ph="SELECT c.id,... BlogBundle" />
-                    <marker date="1498141873684" expanded="true" signature="2447:2522" ph="SELECT a FRO... BlogBundle" />
-                    <marker date="1498141873684" expanded="true" signature="2609:2631" ph="/* query NOT... " />
-                    <marker date="1498141873684" expanded="true" signature="2678:2693" ph="/*page numbe... " />
-                    <marker date="1498141873684" expanded="true" signature="2708:2726" ph="/*limit per " />
-                    <marker date="1498141873684" expanded="true" signature="10447:10478" ph="SELECT a FRO... BlogBundle" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="index.html.twig" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/BlogBundle/Resources/views/Default/index.html.twig">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="306">
-                  <caret line="24" column="62" lean-forward="false" selection-start-line="24" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="slug.html.twig" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/BlogBundle/Resources/views/Default/slug.html.twig">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="256">
-                  <caret line="70" column="46" lean-forward="false" selection-start-line="70" selection-start-column="46" selection-end-line="70" selection-end-column="46" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="post_edit_comment.html.twig" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/BlogBundle/Resources/views/Default/post_edit_comment.html.twig">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="34">
-                  <caret line="2" column="4" lean-forward="false" selection-start-line="2" selection-start-column="4" selection-end-line="2" selection-end-column="4" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="post_info.html.twig" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/BlogBundle/Resources/views/Default/post_info.html.twig">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="295">
-                  <caret line="62" column="82" lean-forward="false" selection-start-line="62" selection-start-column="82" selection-end-line="62" selection-end-column="82" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="post_new_comment.html.twig" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/BlogBundle/Resources/views/Default/post_new_comment.html.twig">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="545">
-                  <caret line="37" column="17" lean-forward="false" selection-start-line="37" selection-start-column="17" selection-end-line="37" selection-end-column="17" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="User.php" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/Application/Sonata/UserBundle/Entity/User.php">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="358">
-                  <caret line="39" column="6" lean-forward="false" selection-start-line="39" selection-start-column="6" selection-end-line="39" selection-end-column="6" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-first>
-      <split-second>
-        <leaf>
-          <file leaf-file-name="services.yml" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/src/BlogBundle/Resources/config/services.yml">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="34">
-                  <caret line="2" column="45" lean-forward="false" selection-start-line="1" selection-start-column="3" selection-end-line="2" selection-end-column="45" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-second>
-    </splitter>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
@@ -219,10 +95,10 @@
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds">
-    <option name="x" value="1" />
-    <option name="y" value="1" />
-    <option name="width" value="1302" />
-    <option name="height" value="766" />
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
+    <option name="width" value="1320" />
+    <option name="height" value="784" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -363,16 +239,17 @@
       <workItem from="1497991069947" duration="5791000" />
       <workItem from="1498031297492" duration="11133000" />
       <workItem from="1498051632029" duration="4202000" />
-      <workItem from="1498137173572" duration="8185000" />
+      <workItem from="1498137173572" duration="8779000" />
+      <workItem from="1498206230078" duration="1022000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="92101000" />
+    <option name="totallyTimeSpent" value="93717000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1" y="1" width="1302" height="766" extended-state="0" />
-    <editor active="true" />
+    <frame x="-8" y="-8" width="1320" height="784" extended-state="6" />
+    <editor active="false" />
     <layout>
       <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2536232" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -567,7 +444,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1275">
           <caret line="75" column="22" lean-forward="false" selection-start-line="75" selection-start-column="22" selection-end-line="75" selection-end-column="22" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -575,7 +451,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="188">
           <caret line="28" column="82" lean-forward="false" selection-start-line="28" selection-start-column="71" selection-end-line="28" selection-end-column="82" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -583,7 +458,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="248">
           <caret line="83" column="32" lean-forward="false" selection-start-line="83" selection-start-column="32" selection-end-line="83" selection-end-column="32" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -591,7 +465,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
           <caret line="9" column="0" lean-forward="false" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -599,7 +472,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="204">
           <caret line="12" column="24" lean-forward="false" selection-start-line="12" selection-start-column="24" selection-end-line="12" selection-end-column="24" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -607,15 +479,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="374">
           <caret line="22" column="29" lean-forward="false" selection-start-line="22" selection-start-column="29" selection-end-line="22" selection-end-column="29" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Application/Sonata/UserBundle/Entity/User.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="358">
-          <caret line="39" column="6" lean-forward="false" selection-start-line="39" selection-start-column="6" selection-end-line="39" selection-end-column="6" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -623,15 +486,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="44" lean-forward="false" selection-start-line="0" selection-start-column="44" selection-end-line="0" selection-end-column="44" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/BlogBundle/Resources/views/Default/post_new_comment.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="545">
-          <caret line="37" column="17" lean-forward="false" selection-start-line="37" selection-start-column="17" selection-end-line="37" selection-end-column="17" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -639,7 +493,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="494">
           <caret line="39" column="17" lean-forward="false" selection-start-line="39" selection-start-column="17" selection-end-line="39" selection-end-column="17" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -647,7 +500,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-170">
           <caret line="8" column="27" lean-forward="false" selection-start-line="8" selection-start-column="27" selection-end-line="8" selection-end-column="27" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -655,39 +507,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="511">
           <caret line="39" column="17" lean-forward="false" selection-start-line="39" selection-start-column="17" selection-end-line="39" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/BlogBundle/Resources/views/Default/index.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="24" column="62" lean-forward="false" selection-start-line="24" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/BlogBundle/Resources/views/Default/post_edit_comment.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="4" lean-forward="false" selection-start-line="2" selection-start-column="4" selection-end-line="2" selection-end-column="4" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/BlogBundle/Resources/views/Default/slug.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="256">
-          <caret line="70" column="46" lean-forward="false" selection-start-line="70" selection-start-column="46" selection-end-line="70" selection-end-column="46" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/BlogBundle/Resources/views/Default/post_info.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="295">
-          <caret line="62" column="82" lean-forward="false" selection-start-line="62" selection-start-column="82" selection-end-line="62" selection-end-column="82" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -695,13 +514,28 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/config/security.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="464">
+          <caret line="109" column="0" lean-forward="false" selection-start-line="109" selection-start-column="0" selection-end-line="110" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/config/config.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="412">
+          <caret line="101" column="0" lean-forward="false" selection-start-line="101" selection-start-column="0" selection-end-line="105" selection-end-column="51" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/BlogBundle/Controller/DefaultController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="314">
+        <state relative-caret-position="17">
           <caret line="42" column="0" lean-forward="false" selection-start-line="42" selection-start-column="0" selection-end-line="42" selection-end-column="0" />
           <folding>
             <marker date="1498141873684" expanded="true" signature="833:864" ph="SELECT a FRO... BlogBundle" />
@@ -719,26 +553,58 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/config/config.yml">
+    <entry file="file://$PROJECT_DIR$/src/BlogBundle/Resources/views/Default/index.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="412">
-          <caret line="101" column="0" lean-forward="false" selection-start-line="101" selection-start-column="0" selection-end-line="105" selection-end-column="51" />
+        <state relative-caret-position="17">
+          <caret line="24" column="62" lean-forward="false" selection-start-line="24" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/BlogBundle/Resources/views/Default/slug.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="70" column="46" lean-forward="false" selection-start-line="70" selection-start-column="46" selection-end-line="70" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/BlogBundle/Resources/views/Default/post_edit_comment.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="2" column="4" lean-forward="false" selection-start-line="2" selection-start-column="4" selection-end-line="2" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/BlogBundle/Resources/views/Default/post_info.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="295">
+          <caret line="62" column="82" lean-forward="false" selection-start-line="62" selection-start-column="82" selection-end-line="62" selection-end-column="82" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/BlogBundle/Resources/views/Default/post_new_comment.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="545">
+          <caret line="37" column="17" lean-forward="false" selection-start-line="37" selection-start-column="17" selection-end-line="37" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Application/Sonata/UserBundle/Entity/User.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="358">
+          <caret line="39" column="6" lean-forward="false" selection-start-line="39" selection-start-column="6" selection-end-line="39" selection-end-column="6" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/BlogBundle/Resources/config/services.yml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="45" lean-forward="false" selection-start-line="1" selection-start-column="3" selection-end-line="2" selection-end-column="45" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/config/security.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="25" column="38" lean-forward="true" selection-start-line="25" selection-start-column="38" selection-end-line="25" selection-end-column="38" />
+        <state relative-caret-position="17">
+          <caret line="1" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="2" selection-end-column="74" />
           <folding />
         </state>
       </provider>

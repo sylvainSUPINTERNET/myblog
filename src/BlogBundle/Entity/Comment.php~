@@ -46,7 +46,6 @@ class Comment
     /**
      * Many Users have One Address.
      * @ORM\ManyToOne(targetEntity="Post", inversedBy="comment")
-     * @ORM\ManyToOne(targetEntity="Post", inversedBy="comment")
      * @ORM\JoinColumn(name="post_id", referencedColumnName="id", nullable=false)
      */
     private $post;
