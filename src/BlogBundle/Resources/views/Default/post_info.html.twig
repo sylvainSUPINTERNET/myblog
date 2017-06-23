@@ -15,7 +15,7 @@
                 {% for rubrique in rubriques %}
                     <li class="nav-item active">
                         <a class="nav-link"
-                           href="{{ path('category_info', {'name_cat' :  rubrique.name } ) }}">{{ rubrique.name|capitalize }}</a>
+                           href="{{ path('slug_path', {'slug' :  rubrique.slug } ) }}">{{ rubrique.name|capitalize }}</a>
                     </li>
                 {% endfor %}
             </ul>

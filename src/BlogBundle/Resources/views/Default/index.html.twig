@@ -16,7 +16,7 @@
                 {% for rubrique in rubriques %}
                     <li class="nav-item active">
                         <a class="nav-link"
-                           href="{{ path('category_info', {'name_cat' :  rubrique.name } ) }}">{{ rubrique.name|capitalize }}</a>
+                           href="{{ path('slug_path', {'slug' :  rubrique.slug } ) }}">{{ rubrique.name|capitalize }}</a>
                     </li>
                 {% endfor %}
             </ul>
@@ -49,10 +49,9 @@
             <div class="col">
                 {% for post in posts %}
                     <ul style="list-style-type: none;">
-                        <h3><a href="{{ path('post_info', {'id' : post.id }) }}">{{ post.title }}</a>
+                        <h3><a href="{{ path('slug_path', {'slug' : post.slug }) }}">{{ post.title }}</a>
                         </h3>
                         <li><code>{{ post.created|date("m/d/Y") }}</code></li>
-                        <strong><i>AUTHOR TO DO (relation)</i></strong>
                         {#<li><i><strong>{{ post.description }}</strong></i></li>#}
                         <li><i>{{ post.content| truncate(200, false, ' ...') }}</i></li>
                         <li>
@@ -61,7 +60,7 @@
                             {% for category in post.categories %}
                                 <ul>
                                     <li>
-                                        <a href="{{ path('category_info' , {'name_cat': category.name}) }}">{{ category.name }}</a>
+                                        <a href="{{ path('slug_path' , {'slug': category.slug}) }}">{{ category.name }}</a>
                                     </li>
                                 </ul>
                             {% endfor %}

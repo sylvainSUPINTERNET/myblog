@@ -53,13 +53,11 @@ class Post
     private $created;
 
 
-    
+
     /**
-     * Many Users have One Address.
      * @ORM\ManyToOne(targetEntity="Application\Sonata\UserBundle\Entity\User")
      * @ORM\JoinColumn(name="author_id", referencedColumnName="id")
      */
-
     private $author;
 
 

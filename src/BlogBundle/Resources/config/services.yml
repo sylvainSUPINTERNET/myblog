@@ -1,6 +1,14 @@
 services:
     security.acl.permission.map:
       class: Sonata\AdminBundle\Security\Acl\Permission\AdminPermissionMap
+
+    registration.user_creation:
+        class: BlogBundle\EventListener\UserCreationListener
+        arguments: [ "@doctrine.orm.entity_manager"  ]
+        tags:
+           - { name: kernel.event_subscriber, alias: registration_listener }
+
+
     admin.post:
         class: BlogBundle\Admin\PostAdmin
         arguments: [~, BlogBundle\Entity\Post, ~]

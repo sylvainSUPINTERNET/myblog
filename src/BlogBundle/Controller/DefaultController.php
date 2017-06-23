@@ -26,6 +26,7 @@ class DefaultController extends Controller
     public function indexAction(Request $request)
     {
 
+
         $em = $this->get('doctrine.orm.entity_manager');
         $dql = "SELECT a FROM BlogBundle:Post a";
         $query = $em->createQuery($dql);
@@ -117,6 +118,7 @@ class DefaultController extends Controller
         $post = $em->getRepository('BlogBundle:Post')
             ->find($id);
 
+
         return $this->render('BlogBundle:Default:post_info.html.twig', array(
                 'posts' => $post,
                 'userId' => $currentUser,
@@ -173,8 +175,9 @@ class DefaultController extends Controller
             $em->persist($comment);
             $em->flush();
 
-            return $this->redirectToRoute('post_info', array(
-                'id' => $id
+            return $this->redirectToRoute('slug_path', array(
+                'id' => $id,
+                'slug' => $post->getSlug()
             ));
         }
 
@@ -245,7 +248,8 @@ class DefaultController extends Controller
             $commentToEdit->setContent($comment->getContent());
             $em->flush();
 
-            return $this->redirectToRoute('post_info', array(
+            return $this->redirectToRoute('slug_path', array(
+                'slug' => $post->getSlug(),
                 'id' => $id,
                 'rubriques' => $rubriques
             ));
@@ -290,12 +294,20 @@ class DefaultController extends Controller
         $em->flush();
 
 
+        return $this->redirectToRoute('slug_path', array(
+            'slug' => $post->getSlug(),
+            'id' => $id,
+            'rubriques' => $rubriques
+        ));
+
+        /*
         return $this->render('BlogBundle:Default:post_info.html.twig', array(
                 'posts' => $post,
                 'userId' => $currentUser,
                 'rubriques' => $rubriques
             )
         );
+        */
 
     }
 
@@ -305,6 +317,8 @@ class DefaultController extends Controller
      */
     public function slutAction(Request $request, $slug)
     {
+
+        $currentUser = $this->container->get('security.token_storage')->getToken()->getUser();
 
         $em = $this->get('doctrine')->getManager();
         $rubriques = $em->getRepository('BlogBundle:Category')
@@ -323,14 +337,21 @@ class DefaultController extends Controller
             //return post
             return $this->render('BlogBundle:Default:slug.html.twig', array(
                     'posts' => $posts,
-                    'rubriques' => $rubriques
+                    'rubriques' => $rubriques,
+                    'userId' => $currentUser->getId(),
                 )
             );
-        } else if (count($categories) > 0 && count($posts) == 0) {
+        } else if (count($categories) > 0) {
             //return categories
 
+            $em = $this->get('doctrine')->getManager();
+            $category = $em->getRepository('BlogBundle:Category')
+                ->findBy(array('slug' => $slug));
+
+            $idCat = $category[0]->getId();
+
             $em = $this->get('doctrine.orm.entity_manager');
-            $dql = "SELECT a FROM BlogBundle:Post a";
+            $dql = "SELECT p.id, p.title as post_title, p.created, p.slug as slug, p.description as description, p.content, c.id as category_id, c.name as category_name FROM BlogBundle:Post p JOIN p.categories c WHERE c.id ='" . $idCat ."'";
             $query = $em->createQuery($dql);
 
             $paginator = $this->get('knp_paginator');
@@ -344,7 +365,9 @@ class DefaultController extends Controller
             return $this->render('BlogBundle:Default:slug.html.twig', array(
                     'categories' => $categories,
                     'allPosts' => $allPost,
-                    'rubriques' => $rubriques
+                    'rubriques' => $rubriques,
+                    'userId' => $currentUser->getId(),
+
 
                 )
             );
@@ -353,15 +376,19 @@ class DefaultController extends Controller
             $errorMsg = "Aucun résultats trouvé !";
             return $this->render('BlogBundle:Default:slug.html.twig', array(
                     'error' => $errorMsg,
-                    'rubriques' => $rubriques
+                    'rubriques' => $rubriques,
+                    'userId' => $currentUser->getId(),
+
 
                 )
             );
         } else {
-            //return post par défaut (post > categorie)
+            //return post par défaut (post > post)
             return $this->render('BlogBundle:Default:slug.html.twig', array(
                     'posts' => $posts,
-                    'rubriques' => $rubriques
+                    'rubriques' => $rubriques,
+                    'userId' => $currentUser->getId(),
+
 
                 )
             );
