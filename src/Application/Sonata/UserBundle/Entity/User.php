@@ -53,7 +53,7 @@ class User extends BaseUser
     {
         parent::__construct();
 
-        // Add role
+        // Add role default
         $this->addRole("ROLE_UTILISATEUR");
 
     }
