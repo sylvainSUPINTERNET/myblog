@@ -1,0 +1,6 @@
+{# src/Acme/AdminBundle/Resources/views/standard_layout.html.twig #}
+{% extends 'SonataAdminBundle::standard_layout.html.twig' %}
+
+{% block side_bar_after_nav %}
+    <p class="text-center"><a href="{{ path('home') }}">Back to home</a></p>
+{% endblock %}

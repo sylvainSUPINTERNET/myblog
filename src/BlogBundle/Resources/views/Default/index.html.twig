@@ -49,11 +49,11 @@
             <div class="col">
                 {% for post in posts %}
                     <ul style="list-style-type: none;">
-                        <h3><a href="{{ path('slug_path', {'slug' : post.slug }) }}">{{ post.title }}</a>
+                        <h3>{{ post.title }}
                         </h3>
-                        <li><code>{{ post.created|date("m/d/Y") }}</code></li>
+                        <li>{{ post.created|date("m/d/Y") }}</li>
                         {#<li><i><strong>{{ post.description }}</strong></i></li>#}
-                        <li><i>{{ post.content| truncate(200, false, ' ...') }}</i></li>
+                        <li><i>{{ post.content| truncate(200, true, ' ...') }}</i></li>
                         <li>
                             <br>
                             <p><strong><i>Thèmes : </i></strong></p>
@@ -64,6 +64,7 @@
                                     </li>
                                 </ul>
                             {% endfor %}
+                            <a class="pull-right" href="{{ path('slug_path', {'slug' : post.slug }) }}">Read more</a>
                         </li>
                         <br>
                     </ul>

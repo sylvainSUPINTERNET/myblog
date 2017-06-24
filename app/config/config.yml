@@ -3,6 +3,7 @@ imports:
     - { resource: security.yml }
     - { resource: services.yml }
     - { resource: "@BlogBundle/Resources/config/services.yml" }
+    - { resource: "@UserBundle/Resources/config/services.yml" }
 
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
@@ -96,14 +97,22 @@ fos_user:
         user_manager: sonata.user.orm.user_manager                      # If you're using doctrine orm (use sonata.user.mongodb.user_manager for mongodb)
 
 
+
+
 sonata_user:
     security_acl: true
     manager_type: orm # can be orm or mongodb
 
 
 sonata_admin:
+    title:      Yet Another Blog
+    title_logo: /bundles/logo/metafizzy-logo.png
     security:
          handler: sonata.admin.security.handler.acl
+
+    templates:
+        # Override default template
+       layout: "::custom_sonata_layout.html.twig"
 
 
 

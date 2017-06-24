@@ -9,6 +9,9 @@ use Symfony\Component\HttpFoundation\Response;
 use Doctrine\Common\Persistence\ManagerRegistry;
 use BlogBundle\Entity\Post;
 use BlogBundle\Entity\Category;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+
+
 use BlogBundle\Entity\Comment;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -70,9 +73,9 @@ class DefaultController extends Controller
 
         $em = $this->get('doctrine.orm.entity_manager');
         //recuperer les post de LA CATEGORIES dans l'ordre decroissant
-        $dql = "SELECT p.id, p.title as post_title, p.created as post_date_creation, c.id as category_id, c.name as category_name FROM BlogBundle:Post p JOIN p.categories c WHERE c.id ='" . $idCat ."'";
+        $dql = "SELECT p.id, p.title as post_title, p.created as post_date_creation, c.id as category_id, c.name as category_name FROM BlogBundle:Post p JOIN p.categories c WHERE c.id ='" . $idCat . "'";
 
-       // $dql = "SELECT c.id, p.id as post_id, p.title as post_title, p.content as post_content FROM BlogBundle:Category c JOIN c.posts p";
+        // $dql = "SELECT c.id, p.id as post_id, p.title as post_title, p.content as post_content FROM BlogBundle:Category c JOIN c.posts p";
         $query = $em->createQuery($dql);
 
         $paginator = $this->get('knp_paginator');
@@ -90,8 +93,6 @@ class DefaultController extends Controller
             )
         );
     }
-
-
 
 
     /**
@@ -148,7 +149,9 @@ class DefaultController extends Controller
             $currentUser = $this->container->get('security.token_storage')->getToken()->getUser()->getId();
 
         } else {
-            $currentUser = "";
+
+            //If user touch HTML !
+            throw new NotFoundHttpException("404 Page not found");
         }
 
         $setUser = $this->container->get('security.token_storage')->getToken()->getUser();
@@ -215,6 +218,7 @@ class DefaultController extends Controller
 
         } else {
             $currentUser = "";
+            throw new NotFoundHttpException("404 Page not found");
         }
 
 
@@ -287,6 +291,7 @@ class DefaultController extends Controller
 
         } else {
             $currentUser = "";
+            throw new NotFoundHttpException("404 Page not found");
         }
 
 
@@ -318,7 +323,26 @@ class DefaultController extends Controller
     public function slutAction(Request $request, $slug)
     {
 
+        /*
+        $em = $this->get('doctrine')->getManager();
+        $test2 = $em->getRepository('BlogBundle:Post')
+            ->findBy(array('slug' => $slug));
+        var_dump($test2);
+
+        $em = $this->get('doctrine')->getManager();
+        $test = $em->getRepository('Application\Sonata\UserBundle\Entity\User')
+            ->findBy(array('username' => 'admin'));
+        */
+
+
+
         $currentUser = $this->container->get('security.token_storage')->getToken()->getUser();
+        if ($currentUser == "anon.") {
+            //pas d'user connecter
+            $currentUser = "";
+        } else {
+            $currentUser = $this->container->get('security.token_storage')->getToken()->getUser()->getId();
+        }
 
         $em = $this->get('doctrine')->getManager();
         $rubriques = $em->getRepository('BlogBundle:Category')
@@ -335,10 +359,14 @@ class DefaultController extends Controller
 
         if (count($categories) == 0 && count($posts) > 0) {
             //return post
+
+            //
+            //
+
             return $this->render('BlogBundle:Default:slug.html.twig', array(
                     'posts' => $posts,
                     'rubriques' => $rubriques,
-                    'userId' => $currentUser->getId(),
+                    'userId' => $currentUser,
                 )
             );
         } else if (count($categories) > 0) {
@@ -351,7 +379,7 @@ class DefaultController extends Controller
             $idCat = $category[0]->getId();
 
             $em = $this->get('doctrine.orm.entity_manager');
-            $dql = "SELECT p.id, p.title as post_title, p.created, p.slug as slug, p.description as description, p.content, c.id as category_id, c.name as category_name FROM BlogBundle:Post p JOIN p.categories c WHERE c.id ='" . $idCat ."'";
+            $dql = "SELECT p.id, p.title as post_title, p.created, p.slug as slug, p.description as description, p.content, c.id as category_id, c.name as category_name FROM BlogBundle:Post p JOIN p.categories c WHERE c.id ='" . $idCat . "'";
             $query = $em->createQuery($dql);
 
             $paginator = $this->get('knp_paginator');
@@ -366,7 +394,7 @@ class DefaultController extends Controller
                     'categories' => $categories,
                     'allPosts' => $allPost,
                     'rubriques' => $rubriques,
-                    'userId' => $currentUser->getId(),
+                    'userId' => $currentUser,
 
 
                 )
@@ -377,7 +405,7 @@ class DefaultController extends Controller
             return $this->render('BlogBundle:Default:slug.html.twig', array(
                     'error' => $errorMsg,
                     'rubriques' => $rubriques,
-                    'userId' => $currentUser->getId(),
+                    'userId' => $currentUser,
 
 
                 )
@@ -387,7 +415,7 @@ class DefaultController extends Controller
             return $this->render('BlogBundle:Default:slug.html.twig', array(
                     'posts' => $posts,
                     'rubriques' => $rubriques,
-                    'userId' => $currentUser->getId(),
+                    'userId' => $currentUser,
 
 
                 )

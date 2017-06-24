@@ -115,7 +115,7 @@
                             <h3><a href="{{ path('slug_path', {'slug' : post.slug }) }}">{{ post.post_title }}</a></h3>
                             <li><code>{{ post.created|date("m/d/Y") }}</code></li>
                             <li><i><strong>{{ post.description }}</strong></i></li>
-                            <li><i>{{ post.content| truncate(200, false, ' ...') }}</i></li>
+                            <li><i>{{ post.content| truncate(200, true, ' ...') }}</i></li>
                         </ul>
                         <hr>
                     {% endfor %}

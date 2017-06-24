@@ -1,0 +1,41 @@
+{% trans_default_domain 'FOSUserBundle' %}
+<div class="container">
+    <div class="row">
+        <div class="col">
+            {{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register form'}}) }}
+            <h3 class="font-green text-center">Sign Up</h3>
+            <div class="form-group">
+                {{ form_widget(form.username, { 'attr': {'class': 'form-control placeholder-no-fix', 'placeholder':'User Name'} }) }}
+                {% for errorItem in form.username.vars.errors %}
+                    <span class="help-inline">{{ errorItem.message }}</span>
+                {% endfor %}
+            </div>
+            <div class="form-group">
+                {{ form_widget(form.email, { 'attr': {'class': 'form-control', 'placeholder':'E-mail'} }) }}
+                {% for errorItem in form.email.vars.errors %}
+                    <span class="help-inline">{{ errorItem.message }}</span>
+                {% endfor %}
+            </div>
+            <div class="form-group">
+                {{ form_widget(form.plainPassword.first, { 'attr': {'class': 'form-control', 'placeholder':'Password'} }) }}
+                {% for errorItem in form.plainPassword.first.vars.errors %}
+                    <span class="help-inline">{{ errorItem.message }}</span>
+                {% endfor %}
+            </div>
+            <div class="form-group">
+                {{ form_widget(form.plainPassword.second, { 'attr': {'class': 'form-control', 'placeholder':'Repeat Password'} }) }}
+                {% for errorItem in form.plainPassword.second.vars.errors %}
+                    <span class="help-inline">{{ errorItem.message }}</span>
+                {% endfor %}
+            </div>
+            <div class="form-actions">
+                <div class="col-md-14 text-center">
+                    <a class="btn btn-default" href="{{ path('home') }}">Back to YAB</a>
+                    <button type="submit" id="register-submit-btn" class="btn btn-success">Register</button>
+                    <p>If you have an account, you can <span><a href="{{ path('sonata_user_admin_security_login') }}">login ?</a></span></p>
+                </div>
+            </div>
+            {{ form_end(form) }}
+        </div>
+    </div>
+</div>
