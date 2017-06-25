@@ -52,7 +52,7 @@ class Comment
 
 
     /**
-     * @ORM\ManyToOne(targetEntity="Application\Sonata\UserBundle\Entity\User")
+     * @ORM\ManyToOne(targetEntity="Application\Sonata\UserBundle\Entity\User", inversedBy="user_comments")
      * @ORM\JoinColumn(name="commentator_id", referencedColumnName="id")
      */
     private $commentator;

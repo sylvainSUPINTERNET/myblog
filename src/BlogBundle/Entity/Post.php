@@ -55,7 +55,7 @@ class Post
 
 
     /**
-     * @ORM\ManyToOne(targetEntity="Application\Sonata\UserBundle\Entity\User")
+     * @ORM\ManyToOne(targetEntity="Application\Sonata\UserBundle\Entity\User", inversedBy="user_posts")
      * @ORM\JoinColumn(name="author_id", referencedColumnName="id")
      */
     private $author;
@@ -106,7 +106,7 @@ class Post
 
     /**
      * One Product has Many Features.
-     * @ORM\OneToMany(targetEntity="Comment", mappedBy="post")
+     * @ORM\OneToMany(targetEntity="Comment", mappedBy="post", cascade={"remove"})
      */
     private $comment;
 

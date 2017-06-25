@@ -31,7 +31,7 @@ class DefaultController extends Controller
 
 
         $em = $this->get('doctrine.orm.entity_manager');
-        $dql = "SELECT a FROM BlogBundle:Post a";
+        $dql = "SELECT a FROM BlogBundle:Post a ORDER BY a.id DESC";
         $query = $em->createQuery($dql);
 
         $paginator = $this->get('knp_paginator');
@@ -73,7 +73,7 @@ class DefaultController extends Controller
 
         $em = $this->get('doctrine.orm.entity_manager');
         //recuperer les post de LA CATEGORIES dans l'ordre decroissant
-        $dql = "SELECT p.id, p.title as post_title, p.created as post_date_creation, c.id as category_id, c.name as category_name FROM BlogBundle:Post p JOIN p.categories c WHERE c.id ='" . $idCat . "'";
+        $dql = "SELECT p.id, p.title as post_title, p.created as post_date_creation, c.id as category_id, c.name as category_name FROM BlogBundle:Post p JOIN p.categories c WHERE c.id ='" . $idCat . "'ORDER BY p.id DESC";
 
         // $dql = "SELECT c.id, p.id as post_id, p.title as post_title, p.content as post_content FROM BlogBundle:Category c JOIN c.posts p";
         $query = $em->createQuery($dql);
@@ -231,7 +231,7 @@ class DefaultController extends Controller
         $form = $this->createFormBuilder($comment)
             ->add('content', TextType::class, array(
                 'attr' => array(
-                    'placeholder' => $commentToEdit->getContent(),
+                    'value' => $commentToEdit->getContent(),
                 )))
             ->add('save', SubmitType::class, array('label' => 'Change comment'))
             ->getForm();
@@ -379,7 +379,7 @@ class DefaultController extends Controller
             $idCat = $category[0]->getId();
 
             $em = $this->get('doctrine.orm.entity_manager');
-            $dql = "SELECT p.id, p.title as post_title, p.created, p.slug as slug, p.description as description, p.content, c.id as category_id, c.name as category_name FROM BlogBundle:Post p JOIN p.categories c WHERE c.id ='" . $idCat . "'";
+            $dql = "SELECT p.id, p.title as post_title, p.created, p.slug as slug, p.description as description, p.content, c.id as category_id, c.name as category_name FROM BlogBundle:Post p JOIN p.categories c WHERE c.id ='" . $idCat . "' ORDER BY p.id DESC";
             $query = $em->createQuery($dql);
 
             $paginator = $this->get('knp_paginator');
@@ -425,41 +425,5 @@ class DefaultController extends Controller
     }
 
 
-    //LA ROUTE /{slug} bien la mettre a la fin sinon les autres routes ne match pas
-    //article et catégorie sont sur /slug donc verifier a chaque fois si en base c'est une catégorie OU un article
-    // refaire les donnée en base car maintenant elle devront integrer un slug !
-    // ajouter la slug sur la création d'un post
-    // AU MOMENT DU CALL DU SLUG si on affiche la catégorie c'est uniquement LES 5 premiers avec pagination
-    // pour le slug faire une condition return soit categorie soit une catégorie (en principe)
-    // CREATION d'un post susr sonata get Current user aussi
-    //faire la pagination sur l'url catégorie puis afficher les 5 premiers articles de la catégories
-    // crer des roles selon les consignes
-    // securiser TOUTES les routes
-    // MENU -> creer une reubrique pour chaque categorie
-
-
-    /*
-    public function getCategoriesAction()
-    {
-
-        $em = $this->get('doctrine')->getManager();
-        $categories = $em->getRepository('BlogBundle:Category')
-            ->findAll();
-
-        return $this->render('BlogBundle:Default:post.html.twig', array(
-                'categories' => $categories
-            )
-        );
-    }
-    */
-
-
-    // MENU SECU COMMENTAIRE FOR USER sur toutes les routes slug etc + AJOUT LIEN A CHAQUE FOIS QU IL A LARTICLE SUR LA ROUTE /post/id pour voir les infos
-    //Connexion / login etc dans le mmenu + champs de recherche pour les slug
-
-
-    //TO DO : ACL ROLE / securisation route + dynamique twig en fonction des granted
-    //MENU => categorie en form de lien + champ recherche pour le slug
-    // ATTRIBUTION A UN USER LORS DE LA CREATION DUN NOUVEAU POST (le post doit avoir un author et le faire apparaitre sur les pages index et post_info)
 
 }

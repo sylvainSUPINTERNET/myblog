@@ -10,6 +10,20 @@
             <generator strategy="AUTO" />
         </id>
 
+<one-to-many field="user_comments" target-entity="BlogBundle\Entity\Comment" mapped-by="commentator">
+    <cascade>
+        <cascade-remove />
+    </cascade>
+</one-to-many>
+
+<one-to-many field="user_posts" target-entity="BlogBundle\Entity\Post" mapped-by="author">
+    <cascade>
+        <cascade-remove />
+    </cascade>
+</one-to-many>
+
+
+
     </entity>
 
 </doctrine-mapping>

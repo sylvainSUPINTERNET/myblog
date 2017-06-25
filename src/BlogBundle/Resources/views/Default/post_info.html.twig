@@ -9,9 +9,7 @@
         <a class="navbar-brand" href="{{ path('home') }}">Yet Another Blog</a>
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="{{ path('home') }}">Home</a>
-                </li>
+
                 {% for rubrique in rubriques %}
                     <li class="nav-item active">
                         <a class="nav-link"
@@ -68,6 +66,7 @@
                         </p>
 
                     </div>
+
                     <h3>Comments</h3>
                     {% for comment in posts.comment %}
                         {% if comment.commentator.id == userId and userId != "" %}
